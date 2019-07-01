@@ -8,13 +8,13 @@ Class Database {
         $PARAM_port="3306";//port de connexion DB
         $PARAM_nom_bd="AnnuaireToutou";// Nom DB
         $PARAM_utilisateur="adminToutou";//nom utilisateur connexion
-        $PARAM_mot_de_passe="Annu@ireT0ut0u";//mot de passe connexion
+        $PARAM_mot_passe="Annu@ireT0ut0u";//mot de passe connexion
 
         try{
-            $this->connexion = new PDO(
-                "mysql:dbname=" .$PARAM_nom_bd,";host=" .$PARAM_hote,
+            $this->connexion = new PDO
+            ("mysql:host=" .$PARAM_hote .";dbnmame=" .$PARAM_nom_bd,
                     $PARAM_utilisateur,
-                    $PARAM_mot_passe );
+                    $PARAM_mot_passe);
         }catch(Exception $monException){
             echo "Erreur : ".$monException->getMessage()."<br />";
             echo "N° : ".$monException->getCode();
@@ -22,7 +22,7 @@ Class Database {
 
     }
 
-    public function $getConnexion(){
+    public function getConnexion(){
         return $this->connexion;
     }
 }
