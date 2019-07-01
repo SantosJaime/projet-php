@@ -13,18 +13,18 @@ Class Database {
         try{
             $this->connexion = new PDO(
                 "mysql:dbname=" .$PARAM_nom_bd,";host=" .$PARAM_hote,
-                $PARAM_utilisateur,,
-                $PARAM_mot_passe );
+                    $PARAM_utilisateur,
+                    $PARAM_mot_passe );
         }catch(Exception $monException){
-            echo "Erreur : ".$monException->getMessage() ."<br />";
+            echo "Erreur : ".$monException->getMessage()."<br />";
             echo "N° : ".$monException->getCode();
         }
 
     }
 
-    public function $getConnexion()
+    public function $getConnexion(){
         return $this->connexion;
-    
+    }
 }
 
 
