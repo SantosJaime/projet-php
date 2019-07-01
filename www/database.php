@@ -11,13 +11,13 @@ Class Database {
         $PARAM_mot_passe="Annu@ireT0ut0u";//mot de passe connexion
 
         try{
-            $this->connexion = new PDO
-            ("mysql:host=" .$PARAM_hote .";dbnmame=" .$PARAM_nom_bd,
+            $this->connexion = new PDO(
+                "mysql:host=" .$PARAM_hote .";dbnmame=" .$PARAM_nom_bd,
                     $PARAM_utilisateur,
                     $PARAM_mot_passe);
-        }catch(Exception $monException){
-            echo "Erreur : ".$monException->getMessage()."<br />";
-            echo "N° : ".$monException->getCode();
+        }catch(Exception $e){
+            echo "Erreur : ".$e->getMessage()."<br />";
+            echo "N° : ".$e->getCode();
         }
 
     }
