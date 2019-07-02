@@ -29,7 +29,7 @@ CREATE TABLE Chiens (
 -- insérer un maitre
 INSERT INTO Maitres (nom, telephone) VALUES ('Bob', '0798767654');
 -- insérer un chien
-INSERT INTO Chiens (nom, age, race, id_maitre) VALUES ('Chipie',12,'Yorkshire',1);
+INSERT INTO Chiens (nom, age, race, id_maitre) VALUES ('Fripouille',12,'Yorkshire',2);
 
 --selectionner tous les chiens
 SELECT id, nom, race FROM Chiens;
