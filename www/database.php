@@ -65,8 +65,32 @@ Class Database {
         //Récupération ID crée
         $id = $this->connexion->lastInsertId();
         return $id;
+    } 
+
+    public function getToutous($id){
+        $listDog = $connexion-> prepare(
+            "SELECT FROM Chiens WHERE id = :id"
+        );
+        $listDog->execute(array(
+            "id" => $id)
+        );
+        $Toutous = $listDog->fetchObject ("Toutous");
+        return $Toutous;
+
     }
 
+    public function getChiens ($idChien){
+        $listDog = $connexion->prepare();
+
+        $listDog->execute(array("id" = idChien));
+
+        $listeChien = $listDog->fetchAll (PDO::FETCH_CLASS, 'Chiens');
+
+        return $listeChien;
+
+    }
+
+    
 }// fin DB
 
 ?>
