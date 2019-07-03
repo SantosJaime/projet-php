@@ -32,11 +32,11 @@ INSERT INTO Maitres (nom, telephone) VALUES ('Bob', '0798767654');
 INSERT INTO Chiens (nom, age, race, id_maitre) VALUES ('Fripouille',12,'Yorkshire',2);
 
 --selectionner tous les chiens
-SELECT id, nom, race FROM Chiens;
+SELECT id, nom, race FROM Chien;
 
 --selectionner un chien avec info maitre
 SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
-FROM Chiens c
+FROM Chien c
 INNER JOIN Maitres m
 ON c.id_maitre = m.id
 WHERE c.id = 1

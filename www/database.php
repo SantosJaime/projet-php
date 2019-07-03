@@ -37,7 +37,7 @@ Class Database {
             "telephone" => $telephone)
         );
         // test de la requête
-        var_dump($pdoStatement->errorInfo());
+        //var_dump($pdoStatement->errorInfo());
 
         //Récupération ID crée
         $id = $this->connexion->lastInsertId();
@@ -60,35 +60,58 @@ Class Database {
         );
         
         // test de la requête
-        var_dump($pdoStatement->errorInfo());
+        //var_dump($pdoStatement->errorInfo());
 
         //Récupération ID crée
         $id = $this->connexion->lastInsertId();
         return $id;
     } 
 
-    public function getToutous($id){
-        $listDog = $connexion-> prepare(
+    /*public function getChiens($id){
+        $listDog = $connexion->prepare(
             "SELECT FROM Chiens WHERE id = :id"
         );
         $listDog->execute(array(
             "id" => $id)
         );
-        $Toutous = $listDog->fetchObject ("Toutous");
-        return $Toutous;
+        $Toutou = $listDog->fetchObject ("Chien");
+        return $Toutou;
 
-    }
+    }*/
 
-    public function getChiens ($idChien){
-        $listDog = $connexion->prepare();
+    public function getAllChiens(){
+        $pdoStatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
+        FROM Chiens c
+        INNER JOIN Maitres m
+        ON c.id_maitre = m.id");
 
-        $listDog->execute(array("id" = idChien));
+        $pdoStatement->execute();
 
-        $listeChien = $listDog->fetchAll (PDO::FETCH_CLASS, 'Chiens');
+        $listeChien = $pdoStatement->fetchAll (PDO::FETCH_CLASS, 'Chien'); 
 
+        //var_dump($pdoStatement->errorInfo());
+        //echo "resultat : " .$listeChien;
         return $listeChien;
+    }
+
+    public function getChien(){
+        $pdostatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
+        FROM Chiens c
+        INNER JOIN Maitres m
+        ON c.id_maitre = m.id
+        WHERE c.id = 4");
+
+        $pdostatement->execute();
+
+        $Clebs = $pdostatement->fetchObject ('Chien');
+
+        var_dump($pdostatement->errorInfo());
+        return $Clebs;
+
 
     }
+
+    
 
     
 }// fin DB

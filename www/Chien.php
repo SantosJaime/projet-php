@@ -28,7 +28,7 @@ Class Chien{
         return $this->race;
     }
     public function getNomMaitre (){
-        return $this->maitre;
+        return $this->nomMaitre;
     }
     public function getTelephone (){
         return $this->telephone;
