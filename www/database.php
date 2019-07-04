@@ -1,4 +1,7 @@
 <?php
+
+require_once ("Chien.php");
+
 Class Database {
     private $connexion;
 
@@ -67,19 +70,25 @@ Class Database {
         return $id;
     } 
 
-    /*public function getChiens($id){
-        $listDog = $connexion->prepare(
-            "SELECT FROM Chiens WHERE id = :id"
-        );
-        $listDog->execute(array(
-            "id" => $id)
-        );
-        $Toutou = $listDog->fetchObject ("Chien");
-        return $Toutou;
+    
+   
 
-    }*/
+    //fonction pour récupérer tous les chiens exo7
+    public function getAllDogs(){
+        $pdoStatement = $this->connexion->prepare(
+            "SELECT id, nom, race FROM Chiens"
+        );
+        //Execution de la requete
+        $pdoStatement->execute();
 
-    public function getAllChiens(){
+         //On stocke en php le résultat de la requete
+        $chiens = $pdoStatement->fetchALL (PDO::FETCH_CLASS, 'Chien');
+
+        //Je retourne la liste des chiens
+        return $chiens;
+    }
+
+    /*public function getAllChiens(){
         $pdoStatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
         FROM Chiens c
         INNER JOIN Maitres m
@@ -92,9 +101,29 @@ Class Database {
         //var_dump($pdoStatement->errorInfo());
         //echo "resultat : " .$listeChien;
         return $listeChien;
+    }*/
+    //fonction qui récupère chien par ID
+    public function getDogById($id){
+        $pdoStatement = $this->connexion->prepare(
+            "SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
+            FROM Chiens c
+            INNER JOIN Maitres m
+            ON c.id_maitre = m.id
+            WHERE c.id = :idChien"
+        );
+        //exécution de la requète
+        $pdoStatement->execute(
+            array("idChien" => $id)
+        );
+        //stockage du résultat de la requête
+        $monChien = $pdoStatement->fetchObject('Chien');
+        //var_dump ($monChien);
+        //var_dump($pdoStatement->errorInfo());
+        //retour du résultat
+        return $monChien;
     }
 
-    public function getChien(){
+   /*public function getChien(){
         $pdostatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
         FROM Chiens c
         INNER JOIN Maitres m
@@ -105,11 +134,9 @@ Class Database {
 
         $Clebs = $pdostatement->fetchObject ('Chien');
 
-        var_dump($pdostatement->errorInfo());
-        return $Clebs;
-
-
-    }
+        //var_dump($pdostatement->errorInfo());
+        //return $Clebs;
+    }*/
 
     
 

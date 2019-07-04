@@ -8,7 +8,7 @@ Class Chien{
     private $age;
     private $race;
     //Atributs maitres du chien
-    private $maitre;
+    private $nomMaitre;
     private $telephone;
 
     //Constructeur par défaut
