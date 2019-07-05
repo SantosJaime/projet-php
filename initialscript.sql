@@ -40,3 +40,6 @@ FROM Chiens c
 INNER JOIN Maitres m
 ON c.id_maitre = m.id
 WHERE c.id = 1
+
+--effacer un chien par ID
+DELETE FROM `Chiens` WHERE id = :id

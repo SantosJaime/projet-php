@@ -88,20 +88,6 @@ Class Database {
         return $chiens;
     }
 
-    /*public function getAllChiens(){
-        $pdoStatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
-        FROM Chiens c
-        INNER JOIN Maitres m
-        ON c.id_maitre = m.id");
-
-        $pdoStatement->execute();
-
-        $listeChien = $pdoStatement->fetchAll (PDO::FETCH_CLASS, 'Chien'); 
-
-        //var_dump($pdoStatement->errorInfo());
-        //echo "resultat : " .$listeChien;
-        return $listeChien;
-    }*/
     //fonction qui récupère chien par ID
     public function getDogById($id){
         $pdoStatement = $this->connexion->prepare(
@@ -123,23 +109,37 @@ Class Database {
         return $monChien;
     }
 
-   /*public function getChien(){
-        $pdostatement = $this->connexion->prepare("SELECT c.id, c.nom, c.age, c.race, m.nom as nomMaitre, m.telephone
-        FROM Chiens c
-        INNER JOIN Maitres m
-        ON c.id_maitre = m.id
-        WHERE c.id = 4");
+    //fonction pour supprimer un chien par ID
+    public function delDogById($id){
+        $pdoStatement = $this->connexion->prepare(
+            "DELETE FROM `Chiens` WHERE id = :idChien"
+        );
+        //exécution de la requète
+        $pdoStatement->execute(
+            array ("idChien"=> $id)
+            );
 
-        $pdostatement->execute();
+        /*//recuperation code erreur
+        $errorcode =$pdoStatement->errorCode();
+        if ($errorCode == 0){
+        // si OK return true
+            return true;
+        }else{
+        // si ça c'est mal passé return flase
+            return false;
+        }*/
+    }
 
-        $Clebs = $pdostatement->fetchObject ('Chien');
+    public function updateChien($id, $nom, $age, $race){
 
-        //var_dump($pdostatement->errorInfo());
-        //return $Clebs;
-    }*/
 
-    
-
+    }
+        //stockage du résultat de la requête
+        //$delChien = $pdoStatement->fetchObject('Chien');
+        //var_dump ($monChien);
+        //var_dump($pdoStatement->errorInfo());
+        //retour du résultat
+        //return $delChien;
     
 }// fin DB
 

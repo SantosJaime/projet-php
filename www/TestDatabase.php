@@ -36,10 +36,15 @@ $listeChien = $database->getAllDogs();
     echo "</ul>";
 
 
-$monChien = $database->getDogById(3);
-        echo "<h4> Infos du chien </h4>"."<br>Nom du Chien : " .$monChien->getNom()."<br>Race : " .$monChien->getRace(). "<br>Age: ".$monChien->getAge().
-        "<br> <h4> Infos du maître </h4>".
-        "<br>Nom du Maître : " .$monChien->getNomMaitre();//"<br>Téléphone : ". $monchien->getTelephone();
+$monChien = $database->getDogById($id);
+        echo "<h4> Infos du chien </h4>"
+        ."<br>Nom du Chien : " .$monChien->getNom()."<br>Race : " .$monChien->getRace(). "<br>Age: ".$monChien->getAge()
+        ."<br> <h4> Infos du maître </h4>"
+        ."<br>Nom du Maître : " .$monChien->getNomMaitre()."<br>N° Tel : ".$monChien->getTelephone();
+
+$deleteDog = $database->delDogById(7);
+
+
 
        
 /*$toutou = $database->getAllChiens ();

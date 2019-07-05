@@ -5,6 +5,7 @@ require_once ("database.php");
 $database = new database();
 //récupàration liste des chiens
 $listeChien = $database->getAllDogs();
+
 ?>
 
 <html>
@@ -12,13 +13,16 @@ $listeChien = $database->getAllDogs();
         <link rel="stylesheet" href="style.css">
     </header>
     <body>
-        <h1> Liste des Chiens </h1>
-        <h2> Annuaire </h2>
+        <h1><u> Liste des Chiens </u></h1>
+        <h3> Annuaire </h3>
         <ul>
             <?php foreach ($listeChien as $Chien){ ?>
-                    <li>
-                        <?php echo "Le chien N° " . $Chien->getId() . " : " . $Chien->getNom() . " de race " . $Chien->getRace(); ?>
-                    </li>
+                    <li><h2>
+                    <a href="detailChien.php?id= <?php echo $Chien->getId() ;?>">
+                    <?php echo "Le chien N° " . $Chien->getId() . " : "?> 
+                    <?php echo $Chien->getNom() . " de race " . $Chien->getRace(); ?> </a>
+                        
+                    </li></h2>
             <?php } ?>
         </ul>
     </body>
