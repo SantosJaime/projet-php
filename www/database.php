@@ -1,6 +1,7 @@
 <?php
 
-require_once ("Chien.php");
+require_once "Chien.php";
+require_once "Maitre.php";
 
 Class Database {
     private $connexion;
@@ -130,9 +131,50 @@ Class Database {
         }*/
     }
 
-    public function updateChien($id, $nom, $age, $race){
+    public function updateDog($id, $nom, $age, $race){
+        //préparation
+        $pdoStatement = $this->connexion->prepare(
+            'UPDATE Chiens
+            SET nom = :nomChien, age = :ageChien, race = :raceChien
+            WHERE id = :idChien'
+        );
+        //Exécution
+        $pdoStatement->execute(
+            array(
+                "nomChien" => $nom,
+                "ageChien" => $age,
+                "raceChien" => $race,
+                "idChien" => $id
+            )
+        );
+        //recuperation code erreur
+        $errorcode =$pdoStatement->errorCode();
+        /*if ($errorCode == 0){
+        // si OK return true
+            return true;
+        }else{
+        // si ça c'est mal passé return flase
+            return false;
+        }*/
+    }
 
+    //fonction pour récupérer tous les chiens exo7
+    
+    
+    public function getAllMasters(){
+        //preparation de la requete 
+        $pdoStatement = $this->connexion->prepare(
+            "SELECT * FROM Maitres"
+        );
+        //Execution de la requete
+        $pdoStatement->execute();
 
+         //On stocke en php le résultat de la requete
+        $listeMaitres = $pdoStatement->fetchALL (PDO::FETCH_CLASS, 'Maitre');
+        //test
+        //var_dump($pdoStatement->errorInfo());
+        //Je retourne la liste des maitres
+        return $listeMaitres;
     }
         //stockage du résultat de la requête
         //$delChien = $pdoStatement->fetchObject('Chien');

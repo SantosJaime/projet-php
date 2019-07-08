@@ -1,6 +1,6 @@
 <?php
 //import database
-require_once ("database.php");
+require_once "database.php";
 //création connexion
 $database = new database();
 //Récupérer ID via l'URL
@@ -25,11 +25,17 @@ $monChien = $database->getDogById($id);
         <h4><?php echo "Supprimer Chien N° ".$monChien->getId(). " ?"?></h4>
         <a href="DeleteDog.php?id=<?php echo $monChien->getId() ;?>"> 
             <button class="favorite styled"
-                type="button"> Effacer
+                type="button"> Effacer Chien
             </button>
         </a>
         <br>
         <br>
+        <a href="create-chien.php"> 
+            <button class="favorite styled3"
+                type="button"> Nouveau Chien
+            </button>
+        </a>
+        <br><br>
         <a href="listeChiens.php"> 
             <button class="favorite styled2"
                 type="button"> Retour à la liste

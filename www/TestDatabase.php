@@ -36,25 +36,32 @@ $listeChien = $database->getAllDogs();
     echo "</ul>";
 
 
-$monChien = $database->getDogById($id);
+/*$monChien = $database->getDogById($id);
         echo "<h4> Infos du chien </h4>"
         ."<br>Nom du Chien : " .$monChien->getNom()."<br>Race : " .$monChien->getRace(). "<br>Age: ".$monChien->getAge()
         ."<br> <h4> Infos du maître </h4>"
-        ."<br>Nom du Maître : " .$monChien->getNomMaitre()."<br>N° Tel : ".$monChien->getTelephone();
+        ."<br>Nom du Maître : " .$monChien->getNomMaitre()."<br>N° Tel : ".$monChien->getTelephone();*/
 
-$deleteDog = $database->delDogById(7);
+//$deleteDog = $database->delDogById(7);
+
+//Appel fonction update
+//$id, $nom, $age, $race
+/*$resultat = $database->updateDog(111, "tutu", 5, "chihuahua");
+if($resultat == true){
+    echo "le chien a été bien mis à jour";
+}else{
+    echo" Problème, Impossible de mettre le chien à jour";
+}*/
 
 
-
-       
-/*$toutou = $database->getAllChiens ();
+$allMasters = $database->getAllMasters();
     echo "<ul>";
-    foreach ($toutou as $Chien){
-        echo "<li> " . $Chien->getId() . $Chien->getNom(). $Chien->getRace() ."</li>";
-    }
+        foreach ($allMasters as $Maitre){
+            echo "<li>";
+            echo "Le Maître ". $Maitre->masterNom() . "Possède l'id N° ". $Maitre->masterId();
+            echo "</li>";
+        }
     echo "</ul>";
 
-$iench = $database->getChien ();
-        echo "<h2>".$iench->getId().$iench->getNom().$iench->getRace() ."</h2>";*/
     
 ?>

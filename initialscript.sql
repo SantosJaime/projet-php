@@ -43,3 +43,10 @@ WHERE c.id = 1
 
 --effacer un chien par ID
 DELETE FROM `Chiens` WHERE id = :id
+
+--Mettre à jour information d'un chien
+UPDATE Chiens SET nom = "Toto", age = 4, race = "Terrier"
+WHERE id = 112
+
+--selectionner tous les maitres
+SELECT id, nom FROM Maitres
