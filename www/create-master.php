@@ -1,21 +1,20 @@
 <?php
-//import database
+//import fichier database
 require_once ("database.php");
-//création connexion
-$database = new database();
-//récupàration liste des chiens
-$listeChien = $database->getAllDogs();
-
+//instanciation de la class database
+$database= new Database();
+//récupération liste des maitres
+$maitres = $database->getAllMasters();
+//var_dump($maitres);
 ?>
+
 
 <html>
     <header>
         <link rel="stylesheet" href="style.css">
     </header>
-
     
-        
-        <head>
+    <head>
         <title></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,31 +29,29 @@ $listeChien = $database->getAllDogs();
                 <a class="navbar-brand" href="#">Projet "Chiens"</a>
                 </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="listeChiens.php">Liste</a></li>
+                        <li><a href="listeChiens.php">Liste</a></li>
                         <li><a href="create-chien.php">Nouveau Chien</a></li>
                         <li><a href="update-chien.php">Mise à jour</a></li> 
-                        <li><a href="create-master.php">Nouveau Maitre</a></li>   
+                        <li class="active"><a href="create-master.php">Nouveau Maitre</a></li>   
                     </ul>
                 </div>
         </nav>
-        
-    
-
     <body>
 
-     
-    
-        <h1><u> Liste des Chiens </u></h1>
-        <h3> Annuaire </h3>
-        <ul>
-            <?php foreach ($listeChien as $Chien){ ?>
-                    <li><h2>
-                    <a href="detailChien.php?id= <?php echo $Chien->getId() ;?>">
-                    <?php echo "Le chien N° " . $Chien->getId() . " : "?> 
-                    <?php echo $Chien->getNom() . " de race " . $Chien->getRace(); ?> </a>
-                        
-                    </li></h2>
-            <?php } ?>
-        </ul>
+        
+
+        <h2> Création de nouveau maitre </h2>
+        <form action="process-create.php" method="post">
+            <label for="nomMaitre">Nom </label>
+            <input type="text" id="nomMaitre" name="nom" placeholder ="Dupont">
+            <label for="telMaitre">Téléphone </label>
+            <input type="number" id="telMaitre" name="age" placeholder ="1">
+           
+                    
+            </select>
+
+            <input type="submit">
+        </form>       
+
     </body>
 </html>

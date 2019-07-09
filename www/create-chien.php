@@ -48,18 +48,15 @@ function test_input($data) {
                 <a class="navbar-brand" href="#">Projet "Chiens"</a>
                 </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="listeChiens.php">Liste</a></li>
-                        <li><a href="create-chien.php">Nouveau Chien</a></li>   
+                        <li><a href="listeChiens.php">Liste</a></li>
+                        <li class="active"><a href="create-chien.php">Nouveau Chien</a></li>
+                        <li><a href="update-chien.php">Mise à jour</a></li> 
+                        <li><a href="create-master.php">Nouveau Maitre</a></li>   
                     </ul>
                 </div>
         </nav>
     <body>
 
-        <ul>
-            <li><a class="active" href="listeChiens.php">Liste</a></li>
-            <li><a href="create-chien.php">Nouveau Chien</a></li>
-           
-        </ul>
 
         <h2> Création de nouveau chien </h2>
         <form action="process-create.php" method="post">
@@ -80,7 +77,7 @@ function test_input($data) {
                     ?>
             </select>
 
-            <input type="submit">
+            <input type="submit" value="Envoyer">
         </form>    
             <!--<br><br>
             <p>
